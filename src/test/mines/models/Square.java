@@ -11,14 +11,14 @@ package test.mines.models;
  */
 public class Square {
     
-    boolean covered;
+    public boolean covered = true;
     
-    boolean hasMinesAround;
+    public boolean hasMinesAround;
     
-    boolean hasFlag;
+    public boolean hasFlag;
     
-    boolean hasMine;
+    public boolean hasMine;
     
-    int nMinesAround;
+    public int nMinesAround;
     
 }
