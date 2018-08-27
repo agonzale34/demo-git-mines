@@ -5,6 +5,7 @@
  */
 package test.mines.game;
 
+import java.util.Random;
 import test.mines.models.Square;
 
 /**
@@ -27,6 +28,7 @@ public class Game {
         this.nMines = nMines;       
         this.playing = true;
         this.initBoard();
+        this.addRandomMines();
     }
     
     private void initBoard() {
@@ -43,12 +45,28 @@ public class Game {
         }
     }
     
+    private void addRandomMines() {
+        int addedMines = 0;
+        while(addedMines < nMines) {
+            Random rand = new Random();
+            
+            int x = rand.nextInt(width);
+            int y = rand.nextInt(height);
+            
+            if (!board[x][y].hasMine) {
+                board[x][y].hasMine = true;
+                addedMines++;
+            }
+            
+        }
+    }
+    
     public void printBoard() { 
         System.out.println("-------------------------------------");  
         for (Square[] rows : board) {
             String srow = "";
             for (Square sq : rows) {
-                srow += (sq.covered == true ? "." : "-") + " "; 
+                srow += (sq.hasMine == true ? "*" : ".") + " "; 
             } 
             System.out.println(srow);
         }
